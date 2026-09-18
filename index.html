@@ -10,25 +10,20 @@
   --navy: #1A4D65;
   --navy-dark: #133B4F;
   --forest: #2E5E3F;
-  --forest-light: #3A7A50;
-  --cream: rgba(251, 247, 240, 0.92); /* Ligeramente translúcido para apreciar el fondo */
-  --cream-warm: rgba(245, 237, 224, 0.94);
-  --ivory: #FFFDF8;
   --sun: #E8B630;
   --sun-light: #F5D060;
   --turquoise: #3AAFBF;
-  --turquoise-light: #5CC8D6;
   --red: #B53A2E;
   --text: #2C2C2C;
   --text-mid: #5A5A5A;
-  --text-light: #888;
-  --border: #E8E0D2;
-  --card-bg: rgba(255, 255, 255, 0.95); /* Tarjetas semi-transparentes elegantes */
-  --shadow-sm: 0 1px 4px rgba(26,77,101,.06);
-  --shadow: 0 2px 12px rgba(26,77,101,.08);
-  --shadow-lg: 0 8px 32px rgba(26,77,101,.12);
-  --radius: 12px;
-  --radius-sm: 8px;
+  --text-light: #777;
+  --border: rgba(232, 224, 210, 0.4);
+  --card-bg: rgba(255, 255, 255, 0.88); /* Tarjetas traslúcidas estilo glassmorphism */
+  --card-bg-alt: rgba(255, 255, 255, 0.94);
+  --shadow: 0 8px 32px rgba(26,77,101,0.1);
+  --shadow-sm: 0 4px 16px rgba(26,77,101,0.06);
+  --radius: 16px;
+  --radius-sm: 10px;
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -37,12 +32,12 @@ html{
   -webkit-text-size-adjust: 100%;
 }
 
-/* ===== FONDO GLOBAL FIJO (EFECTO PARALLAX / STICKY BG) ===== */
+/* ===== FONDO GLOBAL FIJO (MÁS VISIBLE) ===== */
 body{
   font-family:'Inter',sans-serif;
   color:var(--text);
   background: 
-    linear-gradient(rgba(19, 59, 79, 0.72), rgba(26, 77, 101, 0.80)), 
+    linear-gradient(rgba(19, 59, 79, 0.55), rgba(26, 77, 101, 0.65)), 
     url('https://lh3.googleusercontent.com/d/1gFopOqd4QumkaaGwYnm6S1Q9b7Kp3XHt') center center / cover no-repeat fixed;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
@@ -56,7 +51,7 @@ img{max-width:100%;display:block;}
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  padding: 85px 20px 75px;
+  padding: 70px 20px 50px;
   text-align: center;
   color: #fff;
 }
@@ -66,51 +61,60 @@ img{max-width:100%;display:block;}
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  background: rgba(19, 59, 79, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px 20px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow);
 }
 
 .hero h1 {
-  font-size: 2.1rem;
+  font-size: 2rem;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   text-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
 
 .hero .tagline {
   color: var(--sun-light);
-  font-size: 0.88rem;
-  margin-bottom: 22px;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .hero .guest-badge {
   display: inline-block;
-  margin-top: 10px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  padding: 8px 24px;
+  padding: 6px 20px;
   border-radius: 50px;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
 }
 
-/* ===== BOTONES DINÁMICOS ===== */
+/* ===== BARRA DE ACCESOS RÁPIDOS ===== */
 .quick-nav {
-  background: rgba(245, 237, 224, 0.9);
-  backdrop-filter: blur(6px);
-  padding: 24px 16px 14px;
-  border-bottom: 1px solid var(--border);
+  padding: 10px 16px 20px;
 }
 .quick-nav-container {
   max-width: 480px;
   margin: 0 auto;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 18px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 .quick-nav-title {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--navy);
@@ -120,313 +124,317 @@ img{max-width:100%;display:block;}
 }
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 .quick-btn {
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 12px;
+  padding: 10px 4px;
   text-align: center;
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   font-weight: 600;
   box-shadow: var(--shadow-sm);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 .quick-btn:hover {
   background: var(--navy);
   color: #fff;
   border-color: var(--navy);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
+  transform: translateY(-2px);
 }
 .quick-btn span.icon {
-  font-size: 1.25rem;
-  transition: transform 0.3s ease;
-}
-.quick-btn:hover span.icon {
-  transform: scale(1.15);
+  font-size: 1.1rem;
 }
 
-/* ===== SECTIONS ===== */
+/* ===== SECTIONS (BLOQUES DE CONTENIDO) ===== */
 section{
-  padding:52px 16px;
-  scroll-margin-top: 15px;
-  background: rgba(251, 247, 240, 0.88);
-  backdrop-filter: blur(4px);
-  transition: background 0.3s ease;
-  border-bottom: 1px solid var(--border);
+  padding: 24px 16px;
+  scroll-margin-top: 20px;
 }
-section.alt{
-  background: rgba(245, 237, 224, 0.92);
+.wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
 }
-.wrap{max-width:480px;margin:0 auto;}
 
-.sec-header{margin-bottom:28px;}
+.sec-header{margin-bottom:20px; border-bottom: 1px solid var(--border); padding-bottom: 12px;}
 .sec-num{
   display:inline-flex;align-items:center;justify-content:center;
-  width:28px;height:28px;border-radius:50%;
-  background:var(--navy);color:#fff;font-size:.72rem;font-weight:700;
-  margin-bottom:8px;
+  width:26px;height:26px;border-radius:50%;
+  background:var(--navy);color:#fff;font-size:.7rem;font-weight:700;
+  margin-bottom:6px;
 }
-.sec-label{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);margin-bottom:4px;}
-.sec-title{font-size:1.35rem;color:var(--forest);margin-bottom:4px;}
-.sec-sub{font-size:.82rem;color:var(--text-light);font-style:italic;}
+.sec-label{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);margin-bottom:2px;}
+.sec-title{font-size:1.25rem;color:var(--forest);}
+.sec-sub{font-size:.78rem;color:var(--text-light);font-style:italic;}
 
 /* ===== WELCOME ===== */
 .welcome-msg{
-  background:var(--card-bg);border-radius:var(--radius);padding:24px;
-  box-shadow:var(--shadow);border-left:4px solid var(--forest);
+  background:var(--card-bg-alt);border-radius:var(--radius-sm);padding:18px;
+  box-shadow:var(--shadow-sm);border-left:4px solid var(--forest);
+  border: 1px solid var(--border);
 }
-.welcome-msg p{font-size:.88rem;margin-bottom:10px;}
-.welcome-msg .sign{margin-top:16px;padding-top:12px;border-top:1px solid var(--border);}
-.welcome-msg .sign .name{font-weight:600;color:var(--forest);font-size:.9rem;}
-.welcome-msg .sign .role{font-size:.78rem;color:var(--text-light);font-style:italic;}
+.welcome-msg p{font-size:.85rem;margin-bottom:8px;}
+.welcome-msg .sign{margin-top:12px;padding-top:10px;border-top:1px solid var(--border);}
+.welcome-msg .sign .name{font-weight:600;color:var(--forest);font-size:.85rem;}
+.welcome-msg .sign .role{font-size:.75rem;color:var(--text-light);font-style:italic;}
 
 .en-toggle{
   display:inline-flex;align-items:center;gap:6px;
-  margin-top:16px;padding:6px 14px;border-radius:20px;
-  background:var(--navy);color:#fff;font-size:.72rem;font-weight:600;
+  margin-top:14px;padding:6px 14px;border-radius:20px;
+  background:var(--navy);color:#fff;font-size:.7rem;font-weight:600;
   cursor:pointer;border:none;transition:.2s;
 }
-.en-toggle:active{opacity:.8;}
 .en-content{
-  margin-top:12px;padding:16px;border-radius:var(--radius-sm);
+  margin-top:10px;padding:14px;border-radius:var(--radius-sm);
   background:rgba(26,77,101,.04);border:1px solid var(--border);
-  font-size:.84rem;color:var(--text-mid);font-style:italic;line-height:1.7;
+  font-size:.82rem;color:var(--text-mid);font-style:italic;line-height:1.6;
   display:none;
 }
 .en-content.show{display:block;}
 
 /* ===== SCHEDULE ===== */
-.season-tabs{display:flex;gap:8px;margin-bottom:16px;}
+.season-tabs{display:flex;gap:6px;margin-bottom:14px;}
 .season-tab{
-  flex:1;padding:10px;border-radius:var(--radius-sm);text-align:center;
-  font-size:.78rem;font-weight:600;cursor:pointer;transition:.2s;
-  border:2px solid var(--border);color:var(--text-mid);background:var(--card-bg);
+  flex:1;padding:8px;border-radius:var(--radius-sm);text-align:center;
+  font-size:.75rem;font-weight:600;cursor:pointer;transition:.2s;
+  border:1px solid var(--border);color:var(--text-mid);background:rgba(255,255,255,0.7);
 }
-.season-tab.active{border-color:var(--navy);color:var(--navy);background:rgba(26,77,101,.06);}
-.season-tab .label{display:block;font-size:.65rem;font-weight:400;color:var(--text-light);margin-top:2px;}
+.season-tab.active{border-color:var(--navy);color:var(--navy);background:rgba(26,77,101,.08);box-shadow: var(--shadow-sm);}
+.season-tab .label{display:block;font-size:.62rem;font-weight:400;color:var(--text-light);margin-top:2px;}
 
 .season-panel{display:none;}
 .season-panel.active{display:block;}
 .info-row{
   display:flex;justify-content:space-between;align-items:center;
-  padding:12px 0;border-bottom:1px solid var(--border);font-size:.88rem;
+  padding:10px 0;border-bottom:1px solid var(--border);font-size:.85rem;
 }
 .info-row:last-child{border-bottom:none;}
 .info-row .lbl{color:var(--text-mid);}
 .info-row .val{font-weight:600;color:var(--navy);}
 
-.service-cards{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.service-cards{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
 .svc{
-  display:flex;align-items:center;gap:14px;
-  background:var(--card-bg);border-radius:var(--radius-sm);padding:14px 16px;
-  box-shadow:var(--shadow-sm);
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,0.9);border-radius:var(--radius-sm);padding:12px 14px;
+  box-shadow:var(--shadow-sm);border: 1px solid var(--border);
   transition: transform 0.2s ease;
 }
-.svc:hover{transform: translateX(4px);}
+.svc:hover{transform: translateX(3px);}
 .svc .svc-ico{
-  width:40px;height:40px;border-radius:10px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:1.15rem;
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
 }
-.svc .svc-ico.blue{background:rgba(58,175,191,.12);color:var(--turquoise);}
-.svc .svc-ico.sun{background:rgba(232,182,48,.12);color:var(--sun);}
-.svc .svc-ico.green{background:rgba(46,94,63,.1);color:var(--forest);}
-.svc .svc-ico.red{background:rgba(181,58,46,.1);color:var(--red);}
-.svc .svc-text h4{font-size:.88rem;color:var(--text);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:2px;}
-.svc .svc-text p{font-size:.78rem;color:var(--text-light);}
+.svc .svc-ico.blue{background:rgba(58,175,191,.15);color:var(--turquoise);}
+.svc .svc-ico.sun{background:rgba(232,182,48,.15);color:var(--sun);}
+.svc .svc-ico.green{background:rgba(46,94,63,.12);color:var(--forest);}
+.svc .svc-ico.red{background:rgba(181,58,46,.12);color:var(--red);}
+.svc .svc-text h4{font-size:.85rem;color:var(--text);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:2px;}
+.svc .svc-text p{font-size:.75rem;color:var(--text-light);}
 
 /* ===== RULES ===== */
-.rule-group{margin-bottom:20px;}
+.rule-group{margin-bottom:16px;}
 .rule-group-title{
-  font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  padding:6px 12px;border-radius:4px;display:inline-block;margin-bottom:10px;color:#fff;
+  font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:8px;color:#fff;
 }
 .rule-group-title.important{background:var(--navy);}
 .rule-group-title.prohibited{background:var(--red);}
 .rule-group-title.recommend{background:var(--forest);}
 
 .rule-item{
-  padding:12px 14px;margin-bottom:6px;border-radius:var(--radius-sm);
-  background:var(--card-bg);box-shadow:var(--shadow-sm);font-size:.85rem;
-  display:flex;gap:10px;align-items:flex-start;
+  padding:10px 12px;margin-bottom:6px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,0.9);box-shadow:var(--shadow-sm);font-size:.82rem;
+  display:flex;gap:10px;align-items:flex-start;border: 1px solid var(--border);
 }
 .rule-item .rnum{
-  font-weight:700;color:var(--navy);font-size:.78rem;flex-shrink:0;margin-top:1px;min-width:20px;
+  font-weight:700;color:var(--navy);font-size:.75rem;flex-shrink:0;margin-top:1px;min-width:18px;
 }
-.rule-item .en-rule{font-size:.78rem;color:var(--text-light);font-style:italic;margin-top:4px;}
+.rule-item .en-rule{font-size:.75rem;color:var(--text-light);font-style:italic;margin-top:2px;}
 
 .explainer{
-  margin-top:16px;padding:16px;border-radius:var(--radius-sm);
-  background:rgba(255, 255, 255, 0.9);
-  border:1px solid rgba(26,77,101,.1);font-size:.84rem;line-height:1.7;
+  margin-top:14px;padding:14px;border-radius:var(--radius-sm);
+  background:rgba(26,77,101,.04);
+  border:1px solid rgba(26,77,101,.1);font-size:.82rem;line-height:1.6;
 }
 .explainer strong{color:var(--navy);}
 
 /* ===== CHARGES TABLE ===== */
-.charges-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:.84rem; background: var(--card-bg); border-radius: var(--radius-sm); overflow:hidden;}
+.charges-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem; background: rgba(255,255,255,0.9); border-radius: var(--radius-sm); overflow:hidden; border: 1px solid var(--border);}
 .charges-table th{
-  background:var(--navy);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:.78rem;
+  background:var(--navy);color:#fff;padding:8px 12px;text-align:left;font-weight:600;font-size:.75rem;
 }
 .charges-table th:last-child{text-align:right;}
-.charges-table td{padding:10px 14px;border-bottom:1px solid var(--border);}
+.charges-table td{padding:8px 12px;border-bottom:1px solid var(--border);}
 .charges-table td:last-child{text-align:right;font-weight:600;color:var(--navy);}
-.charges-table tr:nth-child(even) td{background:rgba(26,77,101,.03);}
+.charges-table tr:nth-child(even) td{background:rgba(26,77,101,.02);}
 
 /* ===== SAFE STEPS ===== */
 .steps{counter-reset:step;}
 .step{
-  counter-increment:step;display:flex;gap:14px;align-items:flex-start;
-  padding:14px 0;border-bottom:1px solid var(--border);
+  counter-increment:step;display:flex;gap:12px;align-items:flex-start;
+  padding:10px 0;border-bottom:1px solid var(--border);
 }
 .step:last-child{border-bottom:none;}
 .step::before{
   content:counter(step);
-  width:28px;height:28px;border-radius:50%;flex-shrink:0;
-  background:var(--turquoise);color:#fff;font-size:.75rem;font-weight:700;
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  background:var(--turquoise);color:#fff;font-size:.72rem;font-weight:700;
   display:flex;align-items:center;justify-content:center;
 }
-.step p{font-size:.88rem;}
+.step p{font-size:.85rem;}
 
 /* ===== EMERGENCY & CLICK TO CALL ===== */
 .alert-box{
-  background:var(--red);color:#fff;padding:20px;border-radius:var(--radius);
-  margin-bottom:20px;
+  background:var(--red);color:#fff;padding:16px;border-radius:var(--radius-sm);
+  margin-bottom:16px;box-shadow: var(--shadow-sm);
 }
-.alert-box h3{color:#fff;font-size:1.1rem;margin-bottom:6px;}
-.alert-box p{font-size:.88rem;opacity:.92;}
+.alert-box h3{color:#fff;font-size:1.05rem;margin-bottom:4px;}
+.alert-box p{font-size:.85rem;opacity:.95;}
 
 .protocol{
-  background:var(--card-bg);border-radius:var(--radius);padding:18px;
-  box-shadow:var(--shadow);margin-bottom:12px;border-left:4px solid var(--red);
+  background:rgba(255,255,255,0.9);border-radius:var(--radius-sm);padding:14px;
+  box-shadow:var(--shadow-sm);margin-bottom:10px;border-left:4px solid var(--red);
+  border: 1px solid var(--border);
 }
-.protocol h4{font-size:.95rem;color:var(--red);margin-bottom:8px;}
-.protocol p{font-size:.85rem;line-height:1.7;}
-.protocol .en-p{font-size:.8rem;color:var(--text-light);font-style:italic;margin-top:6px;}
+.protocol h4{font-size:.9rem;color:var(--red);margin-bottom:6px;}
+.protocol p{font-size:.82rem;line-height:1.6;}
+.protocol .en-p{font-size:.78rem;color:var(--text-light);font-style:italic;margin-top:4px;}
 
-.enum-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
+.enum-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;}
 .enum-card{
-  background:var(--card-bg);
+  background:rgba(255,255,255,0.9);
   border-radius:var(--radius-sm);
-  padding:16px 14px;
+  padding:14px 10px;
   box-shadow:var(--shadow-sm);
   text-align:center;
   display:block;
-  border:2px solid transparent;
-  transition: all 0.25s ease;
+  border:1px solid var(--border);
+  transition: all 0.2s ease;
   cursor: pointer;
 }
 .enum-card:hover{
   border-color: var(--red);
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
-  background: rgba(181,58,46,0.02);
+  background: rgba(181,58,46,0.03);
 }
 .enum-card .big{
   font-family:'Lora',serif;
-  font-size:1.6rem;
+  font-size:1.5rem;
   font-weight:700;
   color:var(--red);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
 }
 .enum-card .big svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   fill: currentColor;
   opacity: 0.8;
 }
 .enum-card .small{
-  font-size:.75rem;
+  font-size:.72rem;
   color:var(--text-light);
-  margin-top:4px;
+  margin-top:2px;
   font-weight: 500;
 }
 
 /* ===== SUSTAINABILITY ===== */
 .eco-item{
-  display:flex;gap:14px;align-items:flex-start;
-  padding:14px 0;border-bottom:1px solid var(--border);
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px 0;border-bottom:1px solid var(--border);
 }
 .eco-item:last-child{border-bottom:none;}
 .eco-item .eco-ico{
-  width:36px;height:36px;border-radius:50%;flex-shrink:0;
-  background:rgba(46,94,63,.1);color:var(--forest);
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:rgba(46,94,63,.12);color:var(--forest);
+  display:flex;align-items:center;justify-content:center;font-size:0.95rem;
 }
-.eco-item p{font-size:.88rem;}
-.eco-item .en-eco{font-size:.78rem;color:var(--text-light);font-style:italic;margin-top:4px;}
+.eco-item p{font-size:.85rem;}
+.eco-item .en-eco{font-size:.75rem;color:var(--text-light);font-style:italic;margin-top:2px;}
 
 /* ===== ATTRACTIONS ===== */
 .attraction-card{
-  background:var(--card-bg);border-radius:var(--radius);padding:18px;
-  box-shadow:var(--shadow-sm);margin-bottom:10px;
-  display:flex;gap:14px;align-items:flex-start;
+  background:rgba(255,255,255,0.9);border-radius:var(--radius-sm);padding:14px;
+  box-shadow:var(--shadow-sm);margin-bottom:8px;
+  display:flex;gap:12px;align-items:flex-start;
+  border: 1px solid var(--border);
   transition: transform 0.2s ease;
 }
-.attraction-card:hover{transform: translateY(-2px); box-shadow: var(--shadow);}
+.attraction-card:hover{transform: translateY(-2px);}
 .attraction-card .att-ico{
-  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
   background:linear-gradient(135deg,var(--navy),var(--turquoise));
-  display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;
 }
-.attraction-card h4{font-size:.92rem;color:var(--forest);margin-bottom:2px;font-family:'Inter',sans-serif;font-weight:600;}
-.attraction-card .att-en{font-size:.75rem;color:var(--turquoise);font-weight:500;margin-bottom:4px;}
-.attraction-card .att-desc{font-size:.82rem;color:var(--text-mid);line-height:1.6;}
-.attraction-card .att-meta{font-size:.78rem;color:var(--navy);font-weight:500;margin-top:6px;}
+.attraction-card h4{font-size:.88rem;color:var(--forest);margin-bottom:2px;font-family:'Inter',sans-serif;font-weight:600;}
+.attraction-card .att-en{font-size:.72rem;color:var(--turquoise);font-weight:500;margin-bottom:2px;}
+.attraction-card .att-desc{font-size:.8rem;color:var(--text-mid);line-height:1.5;}
+.attraction-card .att-meta{font-size:.75rem;color:var(--navy);font-weight:500;margin-top:4px;}
 
 /* ===== CONTACT ===== */
-.contact-sec{
-  background:linear-gradient(170deg,rgba(26,77,101,0.92) 0%,rgba(19,59,79,0.95) 100%) !important;
-  color:#fff;text-align:center;
+.contact-sec .wrap {
+  background: linear-gradient(170deg, rgba(26, 77, 101, 0.95) 0%, rgba(19, 59, 79, 0.98) 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 .contact-sec .sec-label{color:rgba(255,255,255,.6);}
 .contact-sec .sec-title{color:#fff;}
 .contact-sec .sec-sub{color:rgba(255,255,255,.7);}
 
 .contact-block{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
-  border-radius:var(--radius);padding:20px;margin-bottom:12px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--radius-sm);padding:16px;margin-bottom:10px;
   backdrop-filter:blur(6px);
 }
-.contact-block h4{color:#fff;font-size:.95rem;margin-bottom:4px;font-family:'Inter',sans-serif;font-weight:600;}
-.contact-block .desc{font-size:.8rem;color:rgba(255,255,255,.7);margin-bottom:10px;}
-.contact-block .phone-num{font-size:1.25rem;font-weight:700;color:#fff;letter-spacing:.04em;}
+.contact-block h4{color:#fff;font-size:.9rem;margin-bottom:2px;font-family:'Inter',sans-serif;font-weight:600;}
+.contact-block .desc{font-size:.78rem;color:rgba(255,255,255,.7);margin-bottom:8px;}
+.contact-block .phone-num{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:.04em;}
 
 .wa-button{
-  display:inline-flex;align-items:center;gap:10px;
-  margin-top:24px;padding:14px 32px;border-radius:50px;
-  background:#25D366;color:#fff;font-weight:600;font-size:.95rem;
-  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:16px;padding:12px 28px;border-radius:50px;
+  background:#25D366;color:#fff;font-weight:600;font-size:.9rem;
+  box-shadow:0 4px 16px rgba(37,211,102,.35);
   transition:transform .2s ease;cursor:pointer;border:none;
 }
 .wa-button:active{transform:scale(.96);}
-.wa-button svg{width:20px;height:20px;fill:currentColor;}
+.wa-button svg{width:18px;height:18px;fill:currentColor;}
 
 /* ===== FOOTER ===== */
 footer{
-  background:var(--navy-dark);color:rgba(255,255,255,.6);text-align:center;
-  padding:24px 16px;font-size:.75rem;
+  background:rgba(19, 59, 79, 0.9);
+  backdrop-filter: blur(10px);
+  color:rgba(255,255,255,.6);text-align:center;
+  padding:20px 16px;font-size:.72rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 20px;
 }
 footer strong{color:rgba(255,255,255,.9);}
 
 /* ===== PARKING ===== */
 .parking-visual{
-  display:flex;align-items:center;justify-content:center;gap:16px;
-  padding:20px;background:var(--card-bg);border-radius:var(--radius);
-  box-shadow:var(--shadow-sm);margin:16px 0;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:16px;background:rgba(255,255,255,0.9);border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-sm);margin:14px 0;border: 1px solid var(--border);
 }
 .parking-visual .pv-box{
-  padding:10px 16px;border-radius:8px;font-size:.78rem;font-weight:600;text-align:center;
+  padding:8px 12px;border-radius:6px;font-size:.75rem;font-weight:600;text-align:center;
 }
 .pv-correct{background:rgba(46,94,63,.1);color:var(--forest);border:2px solid var(--forest);}
 .pv-wrong{background:rgba(181,58,46,.08);color:var(--red);border:2px solid rgba(181,58,46,.3);}
@@ -434,7 +442,7 @@ footer strong{color:rgba(255,255,255,.9);}
 </head>
 <body>
 
-<!-- HERO CON FONDO OPTIMIZADO PARA MÓVILES -->
+<!-- HERO CON FONDO OPTIMIZADO -->
 <header class="hero">
   <div class="hero-content">
     <h1>Apart Hotel Sendero del Sol</h1>
@@ -448,14 +456,14 @@ footer strong{color:rgba(255,255,255,.9);}
   <div class="quick-nav-container">
     <p class="quick-nav-title">Acceso rápido a secciones</p>
     <div class="quick-grid">
-      <a href="#bienvenida" class="quick-btn"><span class="icon">👋</span> Bienvenida</a>
-      <a href="#horarios" class="quick-btn"><span class="icon">⏰</span> Horarios</a>
-      <a href="#reglas" class="quick-btn"><span class="icon">📋</span> Reglas</a>
-      <a href="#piscina" class="quick-btn"><span class="icon">🏊‍♂️</span> Piscina</a>
-      <a href="#seguridad" class="quick-btn"><span class="icon">🚨</span> Seguridad</a>
-      <a href="#sustentabilidad" class="quick-btn"><span class="icon">🌿</span> Sustentabilidad</a>
-      <a href="#turismo" class="quick-btn"><span class="icon">🗺️</span> Turismo</a>
-      <a href="#contacto" class="quick-btn"><span class="icon">📞</span> Contacto</a>
+      <a href="#bienvenida" class="quick-btn"><span class="icon">👋</span><span>Bienvenida</span></a>
+      <a href="#horarios" class="quick-btn"><span class="icon">⏰</span><span>Horarios</span></a>
+      <a href="#reglas" class="quick-btn"><span class="icon">📋</span><span>Reglas</span></a>
+      <a href="#piscina" class="quick-btn"><span class="icon">🏊‍♂️</span><span>Piscina</span></a>
+      <a href="#seguridad" class="quick-btn"><span class="icon">🚨</span><span>Seguridad</span></a>
+      <a href="#sustentabilidad" class="quick-btn"><span class="icon">🌿</span><span>Eco</span></a>
+      <a href="#turismo" class="quick-btn"><span class="icon">🗺️</span><span>Turismo</span></a>
+      <a href="#contacto" class="quick-btn"><span class="icon">📞</span><span>Contacto</span></a>
     </div>
   </div>
 </nav>
@@ -488,7 +496,7 @@ footer strong{color:rgba(255,255,255,.9);}
 </section>
 
 <!-- 2. HORARIOS -->
-<section id="horarios" class="alt">
+<section id="horarios">
   <div class="wrap">
     <div class="sec-header">
       <div class="sec-num">2</div>
@@ -496,7 +504,7 @@ footer strong{color:rgba(255,255,255,.9);}
       <h2 class="sec-title">Horarios del Apart Hotel</h2>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin-bottom:12px;">Recepción · Reception</h4>
+    <h4 style="font-size:.85rem;color:var(--navy);margin-bottom:10px;">Recepción · Reception</h4>
 
     <div class="season-tabs">
       <div class="season-tab active" onclick="switchSeason('low',this)">Temporada Baja<span class="label">Mar–Dic</span></div>
@@ -514,17 +522,17 @@ footer strong{color:rgba(255,255,255,.9);}
       <div class="info-row"><span class="lbl">Check-out</span><span class="val">hasta 12:00 h</span></div>
     </div>
 
-    <div class="explainer" style="margin-top:16px;font-size:.82rem;">
+    <div class="explainer" style="margin-top:14px;font-size:.8rem;">
       Si el día de su check-out su vuelo o bus sale más tarde, puede dejar su equipaje en recepción y utilizar los baños del subterráneo.<br>
       <em style="color:var(--text-light);">Luggage storage and basement restrooms available after check-out.</em>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin:28px 0 12px;">Servicios · Services</h4>
+    <h4 style="font-size:.85rem;color:var(--navy);margin:24px 0 10px;">Servicios · Services</h4>
 
     <div class="service-cards">
       <div class="svc">
         <div class="svc-ico sun">&#9749;</div>
-        <div class="svc-text"><h4>Desayuno · Breakfast</h4><p>08:00 – 10:00 h · Servicio pagado · Paid service</p></div>
+        <div class="svc-text"><h4>Desayuno · Breakfast</h4><p>08:00 – 10:00 h · Servicio pagado</p></div>
       </div>
       <div class="svc">
         <div class="svc-ico blue">&#127946;</div>
@@ -532,15 +540,15 @@ footer strong{color:rgba(255,255,255,.9);}
       </div>
       <div class="svc">
         <div class="svc-ico green">&#127916;</div>
-        <div class="svc-text"><h4>Noches de Cine · Movie Nights</h4><p>Solo temporada alta · 2 días/semana, 21:30 h</p></div>
+        <div class="svc-text"><h4>Noches de Cine · Movie Nights</h4><p>Solo temporada alta · 2 días/sem.</p></div>
       </div>
       <div class="svc">
         <div class="svc-ico blue">&#128703;</div>
-        <div class="svc-text"><h4>Aseo Diario · Daily Cleaning</h4><p>Solicitar antes de 12:00 h · No incluye vajilla</p></div>
+        <div class="svc-text"><h4>Aseo Diario · Daily Cleaning</h4><p>Solicitar antes de 12:00 h</p></div>
       </div>
       <div class="svc">
         <div class="svc-ico sun">&#9917;</div>
-        <div class="svc-text"><h4>Taca Taca, Ping Pong, Cama Elástica</h4><p>Solo temporada alta · 10:00 – 22:00 h</p></div>
+        <div class="svc-text"><h4>Juegos (Ping Pong, Taca Taca)</h4><p>Solo temporada alta · 10:00 – 22:00 h</p></div>
       </div>
     </div>
   </div>
@@ -555,22 +563,20 @@ footer strong{color:rgba(255,255,255,.9);}
       <h2 class="sec-title">Para una estadía agradable</h2>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin-bottom:12px;">Artículos de baño · Toiletries</h4>
-    <p style="font-size:.88rem;margin-bottom:6px;">Cambio de toallas, jabón, champú, papel higiénico y secador: solicitar en recepción.</p>
-    <p style="font-size:.82rem;color:var(--text-light);font-style:italic;margin-bottom:20px;">Towel changes, soap, shampoo, toilet paper and hair dryer: ask at reception.</p>
+    <h4 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">Artículos de baño · Toiletries</h4>
+    <p style="font-size:.85rem;margin-bottom:4px;">Cambio de toallas, jabón, champú, papel higiénico y secador: solicitar en recepción.</p>
+    <p style="font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:16px;">Towel changes, soap, shampoo, toilet paper and hair dryer: ask at reception.</p>
 
-    <div class="explainer" style="margin-bottom:24px;">
+    <div class="explainer" style="margin-bottom:20px;">
       <strong>Importante:</strong> No retire las toallas de baño hacia la piscina o playa; su uso es exclusivo para los baños.<br>
       <em style="color:var(--text-light);">Do not take bathroom towels to the pool or beach.</em>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin-bottom:12px;">Ruidos molestos · Noise</h4>
-    <p style="font-size:.88rem;margin-bottom:6px;">Reuniones con música y actividades grupales deben finalizar a más tardar a las 22:00 h.</p>
-    <p style="font-size:.82rem;color:var(--text-light);font-style:italic;margin-bottom:24px;">Group gatherings and music should end by 10:00 p.m.</p>
+    <h4 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">Ruidos molestos · Noise</h4>
+    <p style="font-size:.85rem;margin-bottom:4px;">Reuniones con música y actividades grupales deben finalizar a más tardar a las 22:00 h.</p>
+    <p style="font-size:.78rem;color:var(--text-light);font-style:italic;margin-bottom:20px;">Group gatherings and music should end by 10:00 p.m.</p>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin-bottom:12px;">Llaveros y cargos por pérdida · Keychains & Charges</h4>
-    <p style="font-size:.85rem;margin-bottom:12px;">Se entrega llavero de madera con logotipo, llave de puerta eléctrica (calle Los Nísperos) y control remoto del portón automático. En caso de pérdida:</p>
-
+    <h4 style="font-size:.85rem;color:var(--navy);margin-bottom:10px;">Cargos por pérdida de llaves · Charges</h4>
     <table class="charges-table">
       <tr><th>Artículo · Item</th><th>CLP</th></tr>
       <tr><td>Llavero de madera con cadena</td><td>$15.000</td></tr>
@@ -579,20 +585,20 @@ footer strong{color:rgba(255,255,255,.9);}
       <tr><td>Control remoto portón</td><td>$15.000</td></tr>
     </table>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin:28px 0 12px;">Caja de seguridad · Safe Deposit Box</h4>
-    <p style="font-size:.85rem;margin-bottom:12px;">Cada habitación y departamento cuenta con caja de seguridad. Pasos de uso:</p>
+    <h4 style="font-size:.85rem;color:var(--navy);margin:24px 0 10px;">Caja de seguridad · Safe Deposit Box</h4>
+    <p style="font-size:.82rem;margin-bottom:12px;">Pasos de uso en habitación o departamento:</p>
     <div class="steps">
-      <div class="step"><p>Solicite la llave de seguridad en recepción. <em style="color:var(--text-light);font-size:.82rem;">Request the key at reception.</em></p></div>
-      <div class="step"><p>Cierre la puerta de la caja de seguridad. <em style="color:var(--text-light);font-size:.82rem;">Close the safe door.</em></p></div>
-      <div class="step"><p>Gire la llave y coloque el candado en la parte superior. <em style="color:var(--text-light);font-size:.82rem;">Turn the key and lock the padlock on top.</em></p></div>
-      <div class="step"><p>Guarde la llave en un lugar seguro (solo existe una copia). <em style="color:var(--text-light);font-size:.82rem;">Keep the key safe — only one copy.</em></p></div>
-      <div class="step"><p>Al hacer check-out, deje la caja abierta y entregue la llave en recepción. <em style="color:var(--text-light);font-size:.82rem;">At check-out, leave the safe open and return the key.</em></p></div>
+      <div class="step"><p>Solicite la llave de seguridad en recepción. <em style="color:var(--text-light);font-size:.78rem;">Request key at reception.</em></p></div>
+      <div class="step"><p>Cierre la puerta de la caja de seguridad. <em style="color:var(--text-light);font-size:.78rem;">Close the door.</em></p></div>
+      <div class="step"><p>Gire la llave y coloque el candado arriba. <em style="color:var(--text-light);font-size:.78rem;">Turn key and lock padlock.</em></p></div>
+      <div class="step"><p>Guarde la llave (solo existe una copia). <em style="color:var(--text-light);font-size:.78rem;">Keep safe — one copy.</em></p></div>
+      <div class="step"><p>Al salir, deje abierta y devuelva la llave. <em style="color:var(--text-light);font-size:.78rem;">Return at check-out.</em></p></div>
     </div>
   </div>
 </section>
 
 <!-- 4. PISCINA Y RECREACIÓN -->
-<section id="piscina" class="alt">
+<section id="piscina">
   <div class="wrap">
     <div class="sec-header">
       <div class="sec-num">4</div>
@@ -604,46 +610,46 @@ footer strong{color:rgba(255,255,255,.9);}
     <div class="rule-group">
       <span class="rule-group-title important">IMPORTANTE · IMPORTANT</span>
       <div class="rule-item"><span class="rnum">01</span><div>Toda persona debe ducharse antes de ingresar.<div class="en-rule">Everyone must shower before entering.</div></div></div>
-      <div class="rule-item"><span class="rnum">02</span><div>Niños menores de 12 años deben estar acompañados por un adulto.<div class="en-rule">Children under 12 must be with an adult.</div></div></div>
+      <div class="rule-item"><span class="rnum">02</span><div>Niños menores de 12 años acompañados de un adulto.<div class="en-rule">Children under 12 with an adult.</div></div></div>
     </div>
 
     <div class="rule-group">
-      <span class="rule-group-title prohibited">NO ESTÁ PERMITIDO · NOT ALLOWED</span>
-      <div class="rule-item"><span class="rnum">03</span><div>Ingresar con anillos, pulseras, relojes, cadenas u objetos similares.<div class="en-rule">No rings, bracelets, watches or chains.</div></div></div>
-      <div class="rule-item"><span class="rnum">04</span><div>Recipientes o botellas de vidrio ni material cortante.<div class="en-rule">No glass or sharp materials.</div></div></div>
-      <div class="rule-item"><span class="rnum">05</span><div>Fumar dentro de la piscina.<div class="en-rule">No smoking.</div></div></div>
-      <div class="rule-item"><span class="rnum">06</span><div>Ingresar con calzado o ropa que no sea traje de baño.<div class="en-rule">Swimwear only.</div></div></div>
-      <div class="rule-item"><span class="rnum">07</span><div>Ingresar con mascotas.<div class="en-rule">No pets.</div></div></div>
-      <div class="rule-item"><span class="rnum">08</span><div>Personas con parches, vendajes o afecciones de piel, mucosas o vías respiratorias.<div class="en-rule">Not allowed with bandages or skin/respiratory conditions.</div></div></div>
-      <div class="rule-item"><span class="rnum">09</span><div>Ingresar fuera del horario (después de las 21:00 h).<div class="en-rule">No entry after 9:00 p.m.</div></div></div>
-      <div class="rule-item"><span class="rnum">10</span><div>Contaminar el agua de cualquier forma.<div class="en-rule">No contaminating the water.</div></div></div>
-      <div class="rule-item"><span class="rnum">11</span><div>Llevar toallas de baño de la habitación a la piscina.<div class="en-rule">No room towels at the pool.</div></div></div>
-      <div class="rule-item"><span class="rnum">12</span><div>Saltar las rejas de la piscina.<div class="en-rule">No jumping over the pool fence.</div></div></div>
+      <span class="rule-group-title prohibited">NO PERMITIDO · NOT ALLOWED</span>
+      <div class="rule-item"><span class="rnum">03</span><div>Sin anillos, pulseras, relojes o cadenas.<div class="en-rule">No rings, bracelets or watches.</div></div></div>
+      <div class="rule-item"><span class="rnum">04</span><div>Sin envases de vidrio ni objetos cortantes.<div class="en-rule">No glass or sharp items.</div></div></div>
+      <div class="rule-item"><span class="rnum">05</span><div>No está permitido fumar.<div class="en-rule">No smoking.</div></div></div>
+      <div class="rule-item"><span class="rnum">06</span><div>Solo traje de baño (sin calzado ni ropa común).<div class="en-rule">Swimwear only.</div></div></div>
+      <div class="rule-item"><span class="rnum">07</span><div>No se permiten mascotas.<div class="en-rule">No pets.</div></div></div>
+      <div class="rule-item"><span class="rnum">08</span><div>Sin vendas, parches o afecciones de piel/respiratorias.<div class="en-rule">No bandages or skin conditions.</div></div></div>
+      <div class="rule-item"><span class="rnum">09</span><div>Fuera de horario (después de las 21:00 h).<div class="en-rule">No entry after 9:00 p.m.</div></div></div>
+      <div class="rule-item"><span class="rnum">10</span><div>Contaminar el agua de ninguna forma.<div class="en-rule">No contaminating water.</div></div></div>
+      <div class="rule-item"><span class="rnum">11</span><div>Llevar toallas de baño de la habitación.<div class="en-rule">No room towels.</div></div></div>
+      <div class="rule-item"><span class="rnum">12</span><div>Saltar las rejas perimetrales.<div class="en-rule">No jumping fences.</div></div></div>
     </div>
 
     <div class="rule-group">
       <span class="rule-group-title recommend">RECOMENDACIÓN · RECOMMENDATION</span>
-      <div class="rule-item"><span class="rnum">13</span><div>No tirarse clavados: riesgo de lesiones a la columna.<div class="en-rule">Diving not recommended — spinal injury risk.</div></div></div>
+      <div class="rule-item"><span class="rnum">13</span><div>No tirarse clavados (riesgo de lesión de columna).<div class="en-rule">Diving not recommended.</div></div></div>
     </div>
 
     <div class="explainer">
-      <strong>¿Por qué es obligatoria la ducha?</strong> El cloro reacciona con el sudor, la orina y otros compuestos orgánicos formando cloraminas, sustancias que pueden causar irritación y enfermedades. Ducharse protege la salud de todos.<br><br>
-      <em style="color:var(--text-light);"><strong>Why is showering mandatory?</strong> Chlorine reacts with sweat and organic compounds, forming harmful chloramines. Showering protects everyone.</em>
+      <strong>¿Por qué es obligatoria la ducha?</strong> El cloro reacciona con el sudor y compuestos orgánicos formando cloraminas irritantes. Nos protege a todos.<br><br>
+      <em style="color:var(--text-light);">Shower protects everyone from harmful chloramines.</em>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin:28px 0 12px;">Recreación adicional · More recreation</h4>
+    <h4 style="font-size:.85rem;color:var(--navy);margin:24px 0 10px;">Recreación adicional · More recreation</h4>
     <div class="service-cards">
       <div class="svc">
         <div class="svc-ico green">&#9823;</div>
-        <div class="svc-text"><h4>Juegos de Salón · Board Games</h4><p>Ping pong, taca taca, dominó, Uno, ajedrez y más. Solicitar y devolver en recepción.</p></div>
+        <div class="svc-text"><h4>Juegos de Salón</h4><p>Ping pong, taca taca, dominó y más en recepción.</p></div>
       </div>
       <div class="svc">
         <div class="svc-ico sun">&#128293;</div>
-        <div class="svc-text"><h4>Parrillas · BBQ Grills</h4><p>Reservar con anticipación en recepción.</p></div>
+        <div class="svc-text"><h4>Parrillas · BBQ</h4><p>Reservar con anticipación en recepción.</p></div>
       </div>
       <div class="svc">
         <div class="svc-ico blue">&#127940;</div>
-        <div class="svc-text"><h4>Escuela de Surf · Surf School</h4><p>Precio preferencial: 1 h con instructor, traje y tabla. Junto al hotel.</p></div>
+        <div class="svc-text"><h4>Escuela de Surf</h4><p>Precio preferencial con instructor al lado.</p></div>
       </div>
     </div>
   </div>
@@ -660,90 +666,75 @@ footer strong{color:rgba(255,255,255,.9);}
 
     <div class="alert-box">
       <h3>En caso de emergencia</h3>
-      <p>Acuda de inmediato a recepción e informe lo sucedido.<br><em>Go immediately to reception and report what happened.</em></p>
+      <p>Acuda de inmediato a recepción.<br><em>Go immediately to reception.</em></p>
     </div>
 
     <div class="protocol">
       <h4>Sismo o Terremoto · Earthquake</h4>
-      <p>Diríjase a la Zona de Seguridad, ubicada en el área de juegos infantiles y las canchas de baby fútbol y vóleibol.</p>
-      <p class="en-p">Head to the Safety Zone: children's play area / sports courts.</p>
+      <p>Diríjase a la Zona de Seguridad en el área de juegos infantiles y canchas deportivas.</p>
+      <p class="en-p">Head to the Safety Zone: play area / sports courts.</p>
     </div>
 
     <div class="protocol" style="border-left-color:var(--navy);">
       <h4 style="color:var(--navy);">Tsunami — Ruta de Evacuación</h4>
-      <p>Camine hacia calle Los Nísperos y continúe en dirección <strong style="color:var(--red);">hacia el ORIENTE (Cordillera)</strong>, hasta calle El Santo, pasada la Carretera Panamericana Norte / Autopista del Elqui.</p>
-      <p style="font-size:.82rem;margin-top:8px;">Si se encuentra en segundo o tercer piso, baje por las escaleras de forma tranquila y segura.</p>
-      <p class="en-p">Walk towards Los Nísperos street and continue <strong>EAST towards the Cordillera</strong> (mountains), as far as El Santo street, past the Panamericana Norte / Elqui highway. Use stairs calmly.</p>
+      <p>Camine hacia calle Los Nísperos y continúe <strong style="color:var(--red);">hacia el ORIENTE (Cordillera)</strong>, hasta calle El Santo, pasada la Ruta 5 Norte.</p>
+      <p class="en-p">Walk towards Los Nísperos and head EAST towards the mountains, past El Santo street.</p>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin:24px 0 12px;">Teléfonos de emergencia (Toca para llamar)</h4>
+    <h4 style="font-size:.85rem;color:var(--navy);margin:20px 0 10px;">Teléfonos de emergencia (Toca para llamar)</h4>
     <div class="enum-grid">
       <a href="tel:131" class="enum-card">
-        <div class="big">
-          131
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
+        <div class="big">131 <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
         <div class="small">Ambulancia</div>
       </a>
       <a href="tel:133" class="enum-card">
-        <div class="big">
-          133
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
+        <div class="big">133 <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
         <div class="small">Carabineros</div>
       </a>
       <a href="tel:132" class="enum-card">
-        <div class="big">
-          132
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
+        <div class="big">132 <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
         <div class="small">Bomberos</div>
       </a>
       <a href="tel:136" class="enum-card">
-        <div class="big">
-          136
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
+        <div class="big">136 <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
         <div class="small">Socorro Andino</div>
       </a>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin:28px 0 12px;">Estacionamiento aculatado · Nose-out Parking</h4>
-
+    <h4 style="font-size:.85rem;color:var(--navy);margin:24px 0 10px;">Estacionamiento aculatado · Nose-out Parking</h4>
     <div class="parking-visual">
-      <div class="pv-box pv-correct">FRENTE<br>hacia la salida<br><span style="font-size:1.4rem;">&#128663;&#8594;</span></div>
-      <div class="pv-box pv-wrong">INCORRECTO<br><span style="font-size:1.4rem;">&#8592;&#128663;</span></div>
+      <div class="pv-box pv-correct">FRENTE a la salida<br><span style="font-size:1.2rem;">🚗💨</span></div>
+      <div class="pv-box pv-wrong">INCORRECTO</div>
     </div>
-    <p style="font-size:.85rem;margin-bottom:6px;">Estacione siempre con la parte frontal del vehículo hacia la salida, para facilitar la evacuación en caso de emergencia.</p>
-    <p style="font-size:.8rem;color:var(--text-light);font-style:italic;">Always park nose-out (front facing the exit) for faster evacuation in emergencies.</p>
+    <p style="font-size:.8rem;margin-bottom:4px;">Estacione con el frontal hacia la salida para facilitar evacuaciones.</p>
+    <p style="font-size:.75rem;color:var(--text-light);font-style:italic;">Always park nose-out for faster evacuation.</p>
   </div>
 </section>
 
 <!-- 6. SUSTENTABILIDAD -->
-<section id="sustentabilidad" class="alt">
+<section id="sustentabilidad">
   <div class="wrap">
     <div class="sec-header">
       <div class="sec-num">6</div>
       <p class="sec-label">Sustentabilidad · Sustainability</p>
-      <h2 class="sec-title">Cuidemos juntos nuestro entorno</h2>
-      <p class="sec-sub">Let's take care of our environment together</p>
+      <h2 class="sec-title">Cuidemos nuestro entorno</h2>
     </div>
 
     <div class="eco-item">
       <div class="eco-ico">&#128167;</div>
-      <div><p>Apague el calefón de encendido manual después de ducharse.</p><div class="en-eco">Turn off the manually-lit water heater after showering.</div></div>
+      <div><p>Apague el calefón manual después de ducharse.</p><div class="en-eco">Turn off the water heater after showering.</div></div>
     </div>
     <div class="eco-item">
       <div class="eco-ico">&#128161;</div>
-      <div><p>Apague las luces al salir de su habitación o departamento.</p><div class="en-eco">Turn off the lights when leaving your room.</div></div>
+      <div><p>Apague las luces al salir de su habitación.</p><div class="en-eco">Turn off lights when leaving.</div></div>
     </div>
     <div class="eco-item">
       <div class="eco-ico">&#128688;</div>
-      <div><p>Revise que las llaves de agua queden bien cerradas.</p><div class="en-eco">Check that taps are properly closed.</div></div>
+      <div><p>Verifique que las llaves de agua queden cerradas.</p><div class="en-eco">Check taps are closed.</div></div>
     </div>
     <div class="eco-item">
       <div class="eco-ico">&#9851;</div>
-      <div><p>Utilice los contenedores ecológicos para botellas plásticas, vidrio y latas (ubicados junto al área de parrillas).</p><div class="en-eco">Use the recycling containers for plastic, glass and cans (near the BBQ area).</div></div>
+      <div><p>Utilice puntos ecológicos de reciclaje (área parrillas).</p><div class="en-eco">Use recycling bins near BBQ area.</div></div>
     </div>
   </div>
 </section>
@@ -755,74 +746,25 @@ footer strong{color:rgba(255,255,255,.9);}
       <div class="sec-num">7</div>
       <p class="sec-label">Turismo en la región · Regional Tourism</p>
       <h2 class="sec-title">Explore la Región de Coquimbo</h2>
-      <p class="sec-sub">The best attractions near the hotel</p>
     </div>
 
     <div class="attraction-card"><div class="att-ico">&#9733;</div><div>
-      <h4>Faro Monumental de La Serena</h4><p class="att-en">La Serena Lighthouse</p>
-      <p class="att-desc">Símbolo de la ciudad en Av. del Mar. Monumento Nacional desde 2010.</p>
+      <h4>Faro Monumental</h4><p class="att-en">La Serena Lighthouse</p><p class="att-desc">Símbolo histórico de la ciudad en Av. del Mar.</p>
     </div></div>
-
     <div class="attraction-card"><div class="att-ico">&#127795;</div><div>
-      <h4>Jardín Japonés</h4><p class="att-en">Japanese Garden</p>
-      <p class="att-desc">El parque japonés más grande de Sudamérica (1994). Paisajista: Akira Ohira.</p>
-      <p class="att-meta">Tel.: 51 221 7013</p>
+      <h4>Jardín Japonés</h4><p class="att-en">Japanese Garden</p><p class="att-desc">El parque japonés más grande de Sudamérica.</p><p class="att-meta">Tel.: 51 221 7013</p>
     </div></div>
-
     <div class="attraction-card"><div class="att-ico">&#127749;</div><div>
-      <h4>Valle del Elqui</h4><p class="att-en">Elqui Valley</p>
-      <p class="att-desc">A 30 min. Pisco, cielos límpidos, pueblos como Vicuña y El Molle. Observación de estrellas.</p>
+      <h4>Valle del Elqui</h4><p class="att-en">Elqui Valley</p><p class="att-desc">Astroturismo, pisco, Vicuña y cielos límpidos.</p>
     </div></div>
-
     <div class="attraction-card"><div class="att-ico">&#9769;</div><div>
-      <h4>Cruz del Tercer Milenio</h4><p class="att-en">Third Millennium Cross</p>
-      <p class="att-desc">93 m de altura, el monumento religioso más grande de Sudamérica. Miradores sobre Coquimbo.</p>
-      <p class="att-meta">Tel.: 51 232 7935</p>
+      <h4>Cruz del Tercer Milenio</h4><p class="att-en">Coquimbo</p><p class="att-desc">93 metros de altura con vistas panorámicas.</p><p class="att-meta">Tel.: 51 232 7935</p>
     </div></div>
-
     <div class="attraction-card"><div class="att-ico">&#128011;</div><div>
-      <h4>Punta de Choros e Isla Damas</h4><p class="att-en">Punta de Choros & Damas Island</p>
-      <p class="att-desc">Delfines, ballenas, lobos marinos y pingüinos de Humboldt. Playas de arena blanca.</p>
+      <h4>Punta de Choros & Isla Damas</h4><p class="att-en">Wildlife Reserve</p><p class="att-desc">Pingüinos de Humboldt, delfines y ballenas.</p>
     </div></div>
-
-    <div class="attraction-card"><div class="att-ico">&#128038;</div><div>
-      <h4>Reserva Nacional Pingüino de Humboldt</h4><p class="att-en">Humboldt Penguin National Reserve</p>
-      <p class="att-desc">Islas Chañaral, Choros y Damas. 888 hectáreas protegidas, administradas por CONAF.</p>
-    </div></div>
-
     <div class="attraction-card"><div class="att-ico">&#128301;</div><div>
-      <h4>Observatorio Mamalluca</h4><p class="att-en">Mamalluca Observatory</p>
-      <p class="att-desc">Primer observatorio turístico de Chile, a 9 km de Vicuña. Planetario y telescopios.</p>
-      <p class="att-meta">Tel.: (56) 51 2 670330</p>
-    </div></div>
-
-    <div class="attraction-card"><div class="att-ico">&#127794;</div><div>
-      <h4>Parque Nacional Fray Jorge</h4><p class="att-en">Fray Jorge National Park</p>
-      <p class="att-desc">Bosque relicto junto al desierto de Atacama. Único sitio Starlight de Sudamérica.</p>
-      <p class="att-meta">Jue–Dom 9:00–15:00 h · Tel.: 51 2 244769</p>
-    </div></div>
-
-    <div class="attraction-card"><div class="att-ico">&#127922;</div><div>
-      <h4>Enjoy Coquimbo</h4><p class="att-en">Casino & Hotel</p>
-      <p class="att-desc">Único hotel 5 estrellas de la región. Casino, restaurantes, bares. Open 24 h.</p>
-      <p class="att-meta">Tel.: 600 700 6000</p>
-    </div></div>
-
-    <div class="attraction-card"><div class="att-ico">&#127859;</div><div>
-      <h4>La Recova</h4><p class="att-en">Market & Craft Fair</p>
-      <p class="att-desc">Feria artesanal y restaurantes de cocina serenense. Entrada liberada.</p>
-      <p class="att-meta">Tel.: 51 221 3888</p>
-    </div></div>
-
-    <div class="attraction-card"><div class="att-ico">&#127969;</div><div>
-      <h4>Mezquita de Coquimbo</h4><p class="att-en">Coquimbo Mosque</p>
-      <p class="att-desc">Réplica a escala de la Mezquita Kutubia de Marrakech. Entrada liberada.</p>
-      <p class="att-meta">Tel.: 51 231 0440</p>
-    </div></div>
-
-    <div class="attraction-card"><div class="att-ico">&#127960;</div><div>
-      <h4>Vicuña</h4><p class="att-en">Capital del Valle del Elqui</p>
-      <p class="att-desc">Cuna de Gabriela Mistral (Nobel 1945), capital del pisco. Observatorios Mamalluca y Cerro Tololo.</p>
+      <h4>Observatorio Mamalluca</h4><p class="att-en">Vicuña</p><p class="att-desc">Observación astronómica profesional y turística.</p><p class="att-meta">Tel.: 51 2 670330</p>
     </div></div>
   </div>
 </section>
