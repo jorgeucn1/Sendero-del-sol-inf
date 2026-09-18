@@ -32,16 +32,26 @@
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+html{
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  background:var(--cream);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 h1,h2,h3,h4{font-family:'Lora',serif;font-weight:600;line-height:1.3;}
 a{color:var(--navy);text-decoration:none;}
 img{max-width:100%;display:block;}
 
-/* ===== HERO CON FOTO REAL Y NUEVO LOGO ===== */
+/* ===== HERO LIMPIO SIN CÍRCULO ===== */
 .hero {
   position: relative;
-  padding: 50px 20px 45px;
+  padding: 85px 20px 75px;
   background: linear-gradient(rgba(19, 59, 79, 0.82), rgba(26, 77, 101, 0.88)), url('https://lh3.googleusercontent.com/d/1gFopOqd4QumkaaGwYnm6S1Q9b7Kp3XHt') center/cover no-repeat;
   text-align: center;
   color: #fff;
@@ -54,41 +64,21 @@ img{max-width:100%;display:block;}
   z-index: 2;
 }
 
-.hero-logo-container {
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 16px;
-  background: var(--ivory);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-  border: 3px solid rgba(255,255,255,0.9);
-  overflow: hidden;
-  padding: 12px;
-}
-
-.hero-logo-container img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
 .hero h1 {
-  font-size: 1.6rem;
+  font-size: 2.1rem;
   color: #fff;
-  margin-bottom: 4px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  margin-bottom: 8px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
 .hero .tagline {
   color: var(--sun-light);
-  font-size: 0.8rem;
-  margin-bottom: 15px;
-  letter-spacing: 0.15em;
+  font-size: 0.88rem;
+  margin-bottom: 22px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .hero .guest-badge {
@@ -96,18 +86,18 @@ img{max-width:100%;display:block;}
   margin-top: 10px;
   background: rgba(255, 255, 255, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  padding: 6px 18px;
+  padding: 8px 24px;
   border-radius: 50px;
   color: #fff;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 500;
   backdrop-filter: blur(8px);
 }
 
-/* ===== BOTONES DINÁMICOS EN LA PÁGINA PRINCIPAL ===== */
+/* ===== BOTONES DINÁMICOS CON TRANSICIÓN FLUIDA ===== */
 .quick-nav {
   background: var(--cream-warm);
-  padding: 24px 16px 12px;
+  padding: 24px 16px 14px;
   border-bottom: 1px solid var(--border);
 }
 .quick-nav-container {
@@ -115,9 +105,9 @@ img{max-width:100%;display:block;}
   margin: 0 auto;
 }
 .quick-nav-title {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--navy);
   margin-bottom: 12px;
   font-weight: 700;
@@ -138,7 +128,7 @@ img{max-width:100%;display:block;}
   font-size: 0.82rem;
   font-weight: 600;
   box-shadow: var(--shadow-sm);
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,15 +138,23 @@ img{max-width:100%;display:block;}
   background: var(--navy);
   color: #fff;
   border-color: var(--navy);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow);
 }
 .quick-btn span.icon {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+.quick-btn:hover span.icon {
+  transform: scale(1.15);
 }
 
 /* ===== SECTIONS ===== */
-section{padding:48px 16px; scroll-margin-top: 20px;}
+section{
+  padding:52px 16px;
+  scroll-margin-top: 15px;
+  transition: background 0.3s ease;
+}
 section.alt{background:var(--cream-warm);}
 .wrap{max-width:480px;margin:0 auto;}
 
@@ -221,7 +219,9 @@ section.alt{background:var(--cream-warm);}
   display:flex;align-items:center;gap:14px;
   background:var(--card-bg);border-radius:var(--radius-sm);padding:14px 16px;
   box-shadow:var(--shadow-sm);
+  transition: transform 0.2s ease;
 }
+.svc:hover{transform: translateX(4px);}
 .svc .svc-ico{
   width:40px;height:40px;border-radius:10px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;font-size:1.15rem;
@@ -285,13 +285,14 @@ section.alt{background:var(--cream-warm);}
 }
 .step p{font-size:.88rem;}
 
-/* ===== EMERGENCY ===== */
+/* ===== EMERGENCY & CLICK TO CALL ===== */
 .alert-box{
   background:var(--red);color:#fff;padding:20px;border-radius:var(--radius);
   margin-bottom:20px;
 }
 .alert-box h3{color:#fff;font-size:1.1rem;margin-bottom:6px;}
 .alert-box p{font-size:.88rem;opacity:.92;}
+
 .protocol{
   background:var(--card-bg);border-radius:var(--radius);padding:18px;
   box-shadow:var(--shadow);margin-bottom:12px;border-left:4px solid var(--red);
@@ -302,11 +303,44 @@ section.alt{background:var(--cream-warm);}
 
 .enum-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
 .enum-card{
-  background:var(--card-bg);border-radius:var(--radius-sm);padding:14px;
-  box-shadow:var(--shadow-sm);text-align:center;
+  background:var(--card-bg);
+  border-radius:var(--radius-sm);
+  padding:16px 14px;
+  box-shadow:var(--shadow-sm);
+  text-align:center;
+  display:block;
+  border:2px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
 }
-.enum-card .big{font-family:'Lora',serif;font-size:1.6rem;font-weight:700;color:var(--red);}
-.enum-card .small{font-size:.72rem;color:var(--text-light);margin-top:2px;}
+.enum-card:hover{
+  border-color: var(--red);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  background: rgba(181,58,46,0.02);
+}
+.enum-card .big{
+  font-family:'Lora',serif;
+  font-size:1.6rem;
+  font-weight:700;
+  color:var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.enum-card .big svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  opacity: 0.8;
+}
+.enum-card .small{
+  font-size:.75rem;
+  color:var(--text-light);
+  margin-top:4px;
+  font-weight: 500;
+}
 
 /* ===== SUSTAINABILITY ===== */
 .eco-item{
@@ -327,7 +361,9 @@ section.alt{background:var(--cream-warm);}
   background:var(--card-bg);border-radius:var(--radius);padding:18px;
   box-shadow:var(--shadow-sm);margin-bottom:10px;
   display:flex;gap:14px;align-items:flex-start;
+  transition: transform 0.2s ease;
 }
+.attraction-card:hover{transform: translateY(-2px); box-shadow: var(--shadow);}
 .attraction-card .att-ico{
   width:44px;height:44px;border-radius:12px;flex-shrink:0;
   background:linear-gradient(135deg,var(--navy),var(--turquoise));
@@ -361,7 +397,7 @@ section.alt{background:var(--cream-warm);}
   margin-top:24px;padding:14px 32px;border-radius:50px;
   background:#25D366;color:#fff;font-weight:600;font-size:.95rem;
   box-shadow:0 4px 20px rgba(37,211,102,.35);
-  transition:transform .15s;cursor:pointer;border:none;
+  transition:transform .2s ease;cursor:pointer;border:none;
 }
 .wa-button:active{transform:scale(.96);}
 .wa-button svg{width:20px;height:20px;fill:currentColor;}
@@ -388,19 +424,16 @@ footer strong{color:rgba(255,255,255,.7);}
 </head>
 <body>
 
-<!-- HERO CON FOTO REAL Y EL NUEVO LOGO OFICIAL -->
+<!-- HERO LIMPIO CON LA FOTO DE FONDO -->
 <header class="hero">
   <div class="hero-content">
-    <div class="hero-logo-container">
-      <img src="https://lh3.googleusercontent.com/d/1gFopOqd4QumkaaGwYnm6S1Q9b7Kp3XHt" alt="Logo Sendero del Sol">
-    </div>
     <h1>Apart Hotel Sendero del Sol</h1>
     <p class="tagline">La Serena · Coquimbo · Chile</p>
     <span class="guest-badge">Guest Information · Información para Huéspedes</span>
   </div>
 </header>
 
-<!-- BARRA DE ACCESOS RÁPIDOS / BOTONES DINÁMICOS -->
+<!-- BARRA DE ACCESOS RÁPIDOS CON TRANSICIÓN FLUIDA -->
 <nav class="quick-nav">
   <div class="quick-nav-container">
     <p class="quick-nav-title">Acceso rápido a secciones</p>
@@ -633,12 +666,36 @@ footer strong{color:rgba(255,255,255,.7);}
       <p class="en-p">Walk towards Los Nísperos street and continue <strong>EAST towards the Cordillera</strong> (mountains), as far as El Santo street, past the Panamericana Norte / Elqui highway. Use stairs calmly.</p>
     </div>
 
-    <h4 style="font-size:.9rem;color:var(--navy);margin:24px 0 12px;">Teléfonos de emergencia</h4>
+    <h4 style="font-size:.9rem;color:var(--navy);margin:24px 0 12px;">Teléfonos de emergencia (Toca para llamar)</h4>
     <div class="enum-grid">
-      <div class="enum-card"><div class="big">131</div><div class="small">Ambulancia</div></div>
-      <div class="enum-card"><div class="big">133</div><div class="small">Carabineros</div></div>
-      <div class="enum-card"><div class="big">132</div><div class="small">Bomberos</div></div>
-      <div class="enum-card"><div class="big">136</div><div class="small">Socorro Andino</div></div>
+      <a href="tel:131" class="enum-card">
+        <div class="big">
+          131
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div class="small">Ambulancia</div>
+      </a>
+      <a href="tel:133" class="enum-card">
+        <div class="big">
+          133
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div class="small">Carabineros</div>
+      </a>
+      <a href="tel:132" class="enum-card">
+        <div class="big">
+          132
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div class="small">Bomberos</div>
+      </a>
+      <a href="tel:136" class="enum-card">
+        <div class="big">
+          136
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div class="small">Socorro Andino</div>
+      </a>
     </div>
 
     <h4 style="font-size:.9rem;color:var(--navy);margin:28px 0 12px;">Estacionamiento aculatado · Nose-out Parking</h4>
