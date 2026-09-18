@@ -30,17 +30,6 @@
   --radius: 12px;
   --radius-sm: 8px;
 }
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --cream:#181818;--cream-warm:#1e1e1e;--ivory:#1a1a1a;--card-bg:#232323;
-    --text:#e0e0e0;--text-mid:#aaa;--text-light:#777;--border:#333;
-    --shadow-sm:0 1px 4px rgba(0,0,0,.2);--shadow:0 2px 12px rgba(0,0,0,.25);--shadow-lg:0 8px 32px rgba(0,0,0,.35);
-  }
-}
-:root[data-theme="dark"]{
-  --cream:#181818;--cream-warm:#1e1e1e;--ivory:#1a1a1a;--card-bg:#232323;
-  --text:#e0e0e0;--text-mid:#aaa;--text-light:#777;--border:#333;
-}
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
@@ -49,79 +38,125 @@ h1,h2,h3,h4{font-family:'Lora',serif;font-weight:600;line-height:1.3;}
 a{color:var(--navy);text-decoration:none;}
 img{max-width:100%;display:block;}
 
-/* ===== NAVBAR ===== */
-.navbar{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  background:var(--navy);
-  box-shadow:0 2px 16px rgba(26,77,101,.25);
+/* ===== HERO CON FOTO REAL Y NUEVO LOGO ===== */
+.hero {
+  position: relative;
+  padding: 50px 20px 45px;
+  background: linear-gradient(rgba(19, 59, 79, 0.82), rgba(26, 77, 101, 0.88)), url('https://lh3.googleusercontent.com/d/1gFopOqd4QumkaaGwYnm6S1Q9b7Kp3XHt') center/cover no-repeat;
+  text-align: center;
+  color: #fff;
 }
-.navbar-inner{
-  max-width:480px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;height:54px;
-}
-.navbar .brand{
-  display:flex;align-items:center;gap:8px;
-  color:#fff;font-family:'Lora',serif;font-size:.95rem;font-weight:600;
-}
-.navbar .brand .stars{font-size:.65rem;color:var(--sun);letter-spacing:2px;}
-.navbar .menu-btn{
-  background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;
-  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
-  border-radius:8px;transition:.2s;
-}
-.navbar .menu-btn:hover{background:rgba(255,255,255,.12);}
 
-/* Mobile menu */
-.mobile-menu{
-  position:fixed;top:54px;left:0;right:0;bottom:0;z-index:199;
-  background:var(--navy-dark);
-  transform:translateX(100%);transition:transform .3s ease;
-  overflow-y:auto;padding:16px 0 40px;
+.hero-content {
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
-.mobile-menu.open{transform:translateX(0);}
-.mobile-menu a{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 24px;color:rgba(255,255,255,.85);font-size:.92rem;font-weight:500;
-  border-bottom:1px solid rgba(255,255,255,.06);transition:.2s;
-}
-.mobile-menu a:hover,.mobile-menu a:active{background:rgba(255,255,255,.08);color:#fff;}
-.mobile-menu a .ico{width:28px;text-align:center;font-size:1.1rem;}
 
-/* ===== HERO ===== */
-.hero{
-  padding:78px 20px 52px;
-  background:linear-gradient(170deg,var(--navy) 0%,#1A5F75 45%,var(--turquoise) 100%);
-  text-align:center;position:relative;overflow:hidden;
+.hero-logo-container {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 16px;
+  background: var(--ivory);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  border: 3px solid rgba(255,255,255,0.9);
+  overflow: hidden;
+  padding: 12px;
 }
-.hero::after{
-  content:'';position:absolute;bottom:-1px;left:0;right:0;height:60px;
-  background:linear-gradient(to top,var(--cream),transparent);
+
+.hero-logo-container img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
-.hero .wave-bg{position:absolute;bottom:0;left:0;width:100%;opacity:.08;}
-.hero .logo-area{
-  width:90px;height:90px;margin:0 auto 16px;
-  background:var(--ivory);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 24px rgba(0,0,0,.15);
-  font-size:.7rem;color:var(--text-mid);text-align:center;line-height:1.2;padding:8px;
+
+.hero h1 {
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
-.hero h1{font-size:1.65rem;color:#fff;margin-bottom:4px;}
-.hero .tagline{color:rgba(255,255,255,.55);font-size:.82rem;margin-bottom:20px;letter-spacing:.12em;text-transform:uppercase;}
-.hero .photo-placeholder{
-  max-width:380px;margin:0 auto;border-radius:var(--radius);overflow:hidden;
-  border:2px dashed rgba(255,255,255,.2);padding:40px 20px;
-  color:rgba(255,255,255,.35);font-size:.8rem;
+
+.hero .tagline {
+  color: var(--sun-light);
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
 }
-.hero .guest-badge{
-  display:inline-block;margin-top:20px;
-  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
-  padding:8px 22px;border-radius:50px;color:#fff;font-size:.8rem;font-weight:500;
-  backdrop-filter:blur(8px);
+
+.hero .guest-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 6px 18px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+
+/* ===== BOTONES DINÁMICOS EN LA PÁGINA PRINCIPAL ===== */
+.quick-nav {
+  background: var(--cream-warm);
+  padding: 24px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.quick-nav-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+.quick-nav-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--navy);
+  margin-bottom: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.quick-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  text-align: center;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.quick-btn:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.quick-btn span.icon {
+  font-size: 1.2rem;
 }
 
 /* ===== SECTIONS ===== */
-section{padding:48px 16px;}
+section{padding:48px 16px; scroll-margin-top: 20px;}
 section.alt{background:var(--cream-warm);}
 .wrap{max-width:480px;margin:0 auto;}
 
@@ -353,38 +388,34 @@ footer strong{color:rgba(255,255,255,.7);}
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="navbar-inner">
-    <div class="brand">
-      <span>Sendero del Sol</span>
-      <span class="stars">&#9733;&#9733;&#9733;</span>
+<!-- HERO CON FOTO REAL Y EL NUEVO LOGO OFICIAL -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-logo-container">
+      <img src="https://lh3.googleusercontent.com/d/1gFopOqd4QumkaaGwYnm6S1Q9b7Kp3XHt" alt="Logo Sendero del Sol">
     </div>
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menú">&#9776;</button>
+    <h1>Apart Hotel Sendero del Sol</h1>
+    <p class="tagline">La Serena · Coquimbo · Chile</p>
+    <span class="guest-badge">Guest Information · Información para Huéspedes</span>
+  </div>
+</header>
+
+<!-- BARRA DE ACCESOS RÁPIDOS / BOTONES DINÁMICOS -->
+<nav class="quick-nav">
+  <div class="quick-nav-container">
+    <p class="quick-nav-title">Acceso rápido a secciones</p>
+    <div class="quick-grid">
+      <a href="#bienvenida" class="quick-btn"><span class="icon">👋</span> Bienvenida</a>
+      <a href="#horarios" class="quick-btn"><span class="icon">⏰</span> Horarios</a>
+      <a href="#reglas" class="quick-btn"><span class="icon">📋</span> Reglas</a>
+      <a href="#piscina" class="quick-btn"><span class="icon">🏊‍♂️</span> Piscina</a>
+      <a href="#seguridad" class="quick-btn"><span class="icon">🚨</span> Seguridad</a>
+      <a href="#sustentabilidad" class="quick-btn"><span class="icon">🌿</span> Sustentabilidad</a>
+      <a href="#turismo" class="quick-btn"><span class="icon">🗺️</span> Turismo</a>
+      <a href="#contacto" class="quick-btn"><span class="icon">📞</span> Contacto</a>
+    </div>
   </div>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#bienvenida" onclick="closeMenu()"><span class="ico">&#127774;</span> Bienvenida</a>
-  <a href="#horarios" onclick="closeMenu()"><span class="ico">&#128336;</span> Horarios y Servicios</a>
-  <a href="#reglas" onclick="closeMenu()"><span class="ico">&#128220;</span> Reglas y Convivencia</a>
-  <a href="#piscina" onclick="closeMenu()"><span class="ico">&#127946;</span> Piscina y Recreación</a>
-  <a href="#seguridad" onclick="closeMenu()"><span class="ico">&#128680;</span> Seguridad y Emergencia</a>
-  <a href="#sustentabilidad" onclick="closeMenu()"><span class="ico">&#127807;</span> Sustentabilidad</a>
-  <a href="#turismo" onclick="closeMenu()"><span class="ico">&#127961;</span> Turismo en la Región</a>
-  <a href="#contacto" onclick="closeMenu()"><span class="ico">&#128241;</span> Contacto Directo</a>
-</div>
-
-<!-- HERO -->
-<header class="hero">
-  <svg class="wave-bg" viewBox="0 0 1440 200" preserveAspectRatio="none"><path d="M0,120 C360,200 720,40 1080,120 C1260,160 1380,90 1440,120 L1440,200 L0,200Z" fill="#fff"/></svg>
-  <div class="logo-area">Logo oficial del hotel aquí</div>
-  <h1>Apart Hotel Sendero del Sol</h1>
-  <p class="tagline">La Serena · Coquimbo · Chile</p>
-  <div class="photo-placeholder">Insertar fotografía principal: fachada con piscina y palmeras</div>
-  <span class="guest-badge">Guest Information · Información para Huéspedes</span>
-</header>
 
 <!-- 1. BIENVENIDA -->
 <section id="bienvenida">
@@ -765,25 +796,12 @@ footer strong{color:rgba(255,255,255,.7);}
 </footer>
 
 <script>
-function toggleMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-function closeMenu(){
-  document.getElementById('mobileMenu').classList.remove('open');
-}
 function switchSeason(s, el){
   document.querySelectorAll('.season-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.season-panel').forEach(p=>p.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('panel-'+s).classList.add('active');
 }
-document.addEventListener('click',function(e){
-  const menu=document.getElementById('mobileMenu');
-  const btn=document.querySelector('.menu-btn');
-  if(menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)){
-    closeMenu();
-  }
-});
 </script>
 </body>
 </html>
