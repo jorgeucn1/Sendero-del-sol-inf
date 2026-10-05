@@ -395,23 +395,14 @@ section{
 .attraction-card .att-link:hover{opacity:.9;}
 
 /* ===== CONTACT ===== */
-.contact-sec .wrap {
-  background: linear-gradient(170deg, rgba(26, 77, 101, 0.95) 0%, rgba(19, 59, 79, 0.98) 100%);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-.contact-sec .sec-label{color:rgba(255,255,255,.6);}
-.contact-sec .sec-title{color:#fff;}
-.contact-sec .sec-sub{color:rgba(255,255,255,.7);}
-
 .contact-block{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,0.9);border:1px solid var(--border);
   border-radius:var(--radius-sm);padding:16px;margin-bottom:10px;
-  backdrop-filter:blur(6px);
+  box-shadow:var(--shadow-sm);
 }
-.contact-block h4{color:#fff;font-size:.9rem;margin-bottom:2px;font-family:'Inter',sans-serif;font-weight:600;}
-.contact-block .desc{font-size:.78rem;color:rgba(255,255,255,.7);margin-bottom:8px;}
-.contact-block .phone-num{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:.04em;}
+.contact-block h4{color:var(--navy);font-size:.9rem;margin-bottom:2px;font-family:'Inter',sans-serif;font-weight:600;}
+.contact-block .desc{font-size:.78rem;color:var(--text-light);margin-bottom:8px;}
+.contact-block .phone-num{font-size:1.15rem;font-weight:700;color:var(--navy);letter-spacing:.04em;}
 
 .wa-button{
   display:inline-flex;align-items:center;gap:8px;
@@ -811,7 +802,7 @@ footer strong{color:rgba(255,255,255,.9);}
 <section id="contacto" class="contact-sec">
   <div class="wrap">
     <div class="sec-header">
-      <div class="sec-num" style="background:var(--sun);color:var(--navy);">8</div>
+      <div class="sec-num">8</div>
       <p class="sec-label">Contacto directo · Direct Contact</p>
       <h2 class="sec-title">¿Necesita ayuda?</h2>
       <p class="sec-sub">We're here for you</p>
