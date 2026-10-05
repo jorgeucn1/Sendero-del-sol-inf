@@ -454,6 +454,29 @@ section{
 .review-btn:active{transform:scale(.97);}
 .review-btn svg{width:18px;height:18px;fill:currentColor;}
 
+/* ===== CONTACT FORM ===== */
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.cf-field{margin-bottom:10px;}
+.cf-field label{display:block;font-size:.72rem;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.cf-field input,.cf-field select,.cf-field textarea{
+  width:100%;padding:11px 12px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:rgba(255,255,255,.95);
+  font-family:'Inter',sans-serif;font-size:.85rem;color:var(--text);
+}
+.cf-field textarea{min-height:100px;resize:vertical;}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{outline:2px solid var(--turquoise);}
+.cf-submit{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  margin-top:6px;padding:12px 20px;border-radius:50px;border:none;cursor:pointer;
+  background:var(--forest);color:#fff;font-weight:600;font-size:.9rem;
+  box-shadow:var(--shadow-sm);transition:transform .2s ease;
+}
+.cf-submit:active{transform:scale(.97);}
+.cf-submit:disabled{opacity:.6;cursor:wait;}
+.cf-status{margin-top:10px;font-size:.82rem;text-align:center;min-height:1.2em;font-weight:600;}
+.cf-status.ok{color:var(--forest);}
+.cf-status.err{color:var(--red);}
+
 /* ===== FOOTER ===== */
 footer{
   background:rgba(19, 59, 79, 0.9);
@@ -868,12 +891,50 @@ footer strong{color:rgba(255,255,255,.9);}
   </div>
 </section>
 
+<!-- 10. FORMULARIO DE CONTACTO -->
+<section id="formulario">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-num">10</div>
+      <p class="sec-label">Escríbanos · Contact Form</p>
+      <h2 class="sec-title">Envíenos un mensaje</h2>
+      <p class="sec-sub">Send us a message</p>
+    </div>
+
+    <form id="contactForm" novalidate>
+      <div class="cf-row">
+        <div class="cf-field"><label for="cf-first">Nombre · First name</label><input id="cf-first" type="text" name="fi-sender-firstName" autocomplete="given-name" required></div>
+        <div class="cf-field"><label for="cf-last">Apellido · Last name</label><input id="cf-last" type="text" name="fi-sender-lastName" autocomplete="family-name" required></div>
+      </div>
+      <div class="cf-field"><label for="cf-email">Correo · Email</label><input id="cf-email" type="email" name="fi-sender-email" autocomplete="email" required></div>
+      <div class="cf-row">
+        <div class="cf-field"><label for="cf-phone">Teléfono (opcional)</label><input id="cf-phone" type="tel" name="fi-sender-phone" placeholder="+56912345678" autocomplete="tel"></div>
+        <div class="cf-field"><label for="cf-room">N° habitación (opcional)</label><input id="cf-room" type="text" name="fi-text-room"></div>
+      </div>
+      <div class="cf-field"><label for="cf-subject">Motivo · Subject</label>
+        <select id="cf-subject" name="fi-select-subject" required>
+          <option value="">Seleccione · Select</option>
+          <option value="Consulta">Consulta · Inquiry</option>
+          <option value="Solicitud">Solicitud · Request</option>
+          <option value="Reserva">Reserva · Booking</option>
+          <option value="Reclamo o sugerencia">Reclamo o sugerencia · Complaint / Suggestion</option>
+          <option value="Otro">Otro · Other</option>
+        </select>
+      </div>
+      <div class="cf-field"><label for="cf-msg">Mensaje · Message</label><textarea id="cf-msg" name="fi-text-message" required></textarea></div>
+      <button type="submit" class="cf-submit" id="cfBtn">Enviar mensaje · Send</button>
+      <p class="cf-status" id="cfStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
 <footer>
   <strong>Apart Hotel Sendero del Sol</strong> &#9733;&#9733;&#9733;<br>
   La Serena · Región de Coquimbo · Chile<br><br>
   Información sujeta a cambios. Confirme horarios y servicios con recepción.
 </footer>
 
+<script src="https://forminit.com/sdk/v1/forminit.js"></script>
 <script>
 function switchSeason(s, el){
   document.querySelectorAll('.season-tab').forEach(t=>t.classList.remove('active'));
@@ -895,6 +956,29 @@ function switchSeason(s, el){
     var c=document.getElementById('reviewText').value.trim();
     var m='Opinión Apart Hotel Sendero del Sol\nCalificación: '+'\u2605'.repeat(rating)+' ('+rating+'/5)'+(c?'\nComentario: '+c:'');
     window.open('https://wa.me/56956560425?text='+encodeURIComponent(m),'_blank','noopener');
+  });
+})();
+
+(function(){
+  var form=document.getElementById('contactForm'),st=document.getElementById('cfStatus'),btn=document.getElementById('cfBtn');
+  if(!form||typeof Forminit==='undefined'){ if(st) st.textContent=''; }
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    st.className='cf-status';
+    var ph=form.elements['fi-sender-phone'].value.trim();
+    if(!form.checkValidity()||!form.elements['fi-sender-email'].value.includes('@')){st.className='cf-status err';st.textContent='Complete los campos obligatorios · Please fill required fields';return;}
+    if(ph&&!/^\+[1-9]\d{7,14}$/.test(ph)){st.className='cf-status err';st.textContent='Teléfono con formato +56912345678 · Phone as +56912345678';return;}
+    if(typeof Forminit==='undefined'){st.className='cf-status err';st.textContent='No se pudo cargar el servicio. Intente más tarde · Service unavailable';return;}
+    var fd=new FormData(form),del=[];
+    fd.forEach(function(v,k){if(typeof v==='string'&&v.trim()==='')del.push(k);});
+    del.forEach(function(k){fd.delete(k);});
+    btn.disabled=true;st.textContent='Enviando... · Sending...';
+    try{
+      var r=await new Forminit().submit('tveuzrk7z1w',fd);
+      if(r.error){st.className='cf-status err';st.textContent=r.error.message||'Error al enviar · Error';}
+      else{st.className='cf-status ok';st.textContent='¡Mensaje enviado! Le responderemos pronto · Message sent!';form.reset();}
+    }catch(err){st.className='cf-status err';st.textContent='Error de conexión · Connection error';}
+    btn.disabled=false;
   });
 })();
 </script>
